@@ -1,4 +1,4 @@
-import { Layout, Page } from '@shopify/polaris'
+import { Card, Layout, Page } from '@shopify/polaris'
 import React, { useEffect } from 'react'
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useAuthenticatedFetch } from "../hooks";
@@ -15,8 +15,8 @@ function Order() {
     const [singleOrder, setSingleOrder] = useState({})
     const [updatePageReq, setUpdatePageReq] = useState({})
     const [updateIndex, setUpdateIndex] = useState(0)
-    const [newPage, setNewPage] = useState({title: "", time: "", complete: false})
-    
+    const [newPage, setNewPage] = useState({ title: "", time: "", complete: false })
+
     useEffect(() => {
         fetchOrder()
     }, [])
@@ -48,7 +48,7 @@ function Order() {
         setSingleOrder({})
         setUpdateIndex(0)
         setUpdatePageReq({})
-        setNewPage({title: "", time: "", complete: false})
+        setNewPage({ title: "", time: "", complete: false })
     }
 
     const updateValue = node => {
@@ -140,7 +140,7 @@ function Order() {
 
     const handleUpdatePageSubmit = async (e) => {
         setOpenUpdateModal(false)
-        let updateOrderReq  = singleOrder.manage.prograce.all
+        let updateOrderReq = singleOrder.manage.prograce.all
         updateOrderReq[updateIndex] = updatePageReq
 
         const updateData = {
@@ -152,15 +152,16 @@ function Order() {
     }
 
     return (
-        <Page>
-            <TitleBar
+        <>
+            <Card
+                sectioned
                 title="Manage Orders"
-                secondaryActions={[
+                actions={[
                     { content: "Update Order", onAction: handleUpdateOrders },
                     { content: "Test Order", onAction: hadnleTest }
                 ]}
             />
-
+            <br/>
             <Layout>
                 <ViewOrders
                     orders={orders}
@@ -185,8 +186,8 @@ function Order() {
                     updatePage={updatePageReq}
                     handleUpdatePageSubmit={handleUpdatePageSubmit}
                 />
-            </Layout>
-        </Page>
+            </Layout >
+        </>
     )
 }
 

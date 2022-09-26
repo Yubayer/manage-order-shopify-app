@@ -21,14 +21,16 @@ export default function Manage() {
     }
 
     return (
-        <Page fullWidth>
-            <TitleBar
-                title="Page name"
-                primaryAction={{ content: "Selector", onAction: handleSelectorOpen }}
-                secondaryActions={[
-                    { content: "delete", onAction: handleDelete }
+        <>
+            <Card
+                sectioned
+                title="Manage page"
+                actions={[
+                    { content: "delete", onAction: handleDelete },
+                    { content: "Selector", onAction: handleSelectorOpen }
                 ]}
             />
+            <br/>
             <Layout>
                 <ResourcePicker
                     resourceType="Product"
@@ -38,32 +40,12 @@ export default function Manage() {
                     showVariants={false}
                     initialQuery="shirt"
                 />
-                <Layout.Section>
-                    <Card sectioned>
-                        <Heading>Heading</Heading>
-                        <TextContainer>
-                            <p>Body</p>
-                            <div style={{ padding: "0 20px" }}>
-                                <Image
-                                    source={'ad'}
-                                    alt="Nice work on building a Shopify app"
-                                    width={120}
-                                />
-                            </div>
-                        </TextContainer>
-                    </Card>
-                </Layout.Section>
-                <Layout.Section secondary>
-                    <Card title="Tags" sectioned>
-                        <p>Add tags to your order.</p>
-                    </Card>
-                </Layout.Section>
             </Layout>
 
             <ShowProducts
                 products={products}
             />
 
-        </Page>
+        </>
     );
 }

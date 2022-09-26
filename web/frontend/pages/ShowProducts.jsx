@@ -6,26 +6,18 @@ function ShowProducts({
 }) {
     return (
         <>
-            {products.length > 0 && products.map(product => {
-                return <Layout>
-                    <Layout.Section sectioned>
-                        <Card title="Order details" sectioned>
-                            <p>
-                                Use to follow a normal section with a secondary section to create
-                                a 2/3 + 1/3 layout on detail pages (such as individual product or
-                                order pages). Can also be used on any page that needs to structure
-                                a lot of content. This layout stacks the columns on small screens.
-                            </p>
-                        </Card>
-                    </Layout.Section>
-                    <Layout.Section secondary sectioned>
-                        <Card title="Tags" sectioned>
-                            <p>Add tags to your order.</p>
-                        </Card>
-                    </Layout.Section>
-                </Layout>
-                
-            })}
+            <div class="row row-cols-2 row-cols-md-4 g-2">
+                {products.length > 0 && products.map(product => {
+                    return <div class="col">
+                        <div class="card h-100">
+                            <img src={product.images[0].originalSrc} class="card-img-top" alt="imag"  width="100" />
+                            <div class="card-body">
+                                <h5 class="card-title">{product.title}</h5>
+                            </div>
+                        </div>
+                    </div>
+                })}
+            </div>
         </>
     )
 }

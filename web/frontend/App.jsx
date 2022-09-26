@@ -1,5 +1,4 @@
 import { BrowserRouter } from "react-router-dom";
-import { NavigationMenu } from "@shopify/app-bridge-react";
 import Routes from "./Routes";
 
 import {
@@ -7,6 +6,10 @@ import {
   QueryProvider,
   PolarisProvider,
 } from "./components";
+
+import NavBar from "./pages/NavBar";
+import { Page } from "@shopify/polaris";
+
 
 export default function App() {
   // Any .tsx or .jsx files in /pages will become a route
@@ -18,23 +21,17 @@ export default function App() {
       <BrowserRouter>
         <AppBridgeProvider>
           <QueryProvider>
-            <NavigationMenu
-              navigationLinks={[
-                {
-                  label: "Manage",
-                  destination: "/manage",
-                },
-                {
-                  label: "Deactive",
-                  destination: "/deactiveProducts",
-                },
-                {
-                  label: "Order",
-                  destination: "/order",
-                },
-              ]}
-            />
-            <Routes pages={pages} />
+            <Page fullWidth>
+
+              <div class="row">
+                <div class="col-2">
+                  <NavBar />
+                </div>
+                <div class="col-10">
+                  <Routes pages={pages} />
+                </div>
+              </div>
+            </Page>
           </QueryProvider>
         </AppBridgeProvider>
       </BrowserRouter>
