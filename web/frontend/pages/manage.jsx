@@ -9,6 +9,7 @@ export default function Manage() {
 
     const handleSelectorOpen = e => {
         setOpen(true)
+        setProducts([])
     }
 
     const handleSelector = e => {
@@ -20,14 +21,19 @@ export default function Manage() {
         console.log(products)
     }
 
+    const handleClearProducts = e => {
+        setProducts([])
+    }
+
     return (
         <>
             <Card
                 sectioned
                 title="Manage page"
                 actions={[
-                    { content: "delete", onAction: handleDelete },
-                    { content: "Selector", onAction: handleSelectorOpen }
+                    { content: "Delete", onAction: handleDelete },
+                    { content: "Selector", onAction: handleSelectorOpen },
+                    { content: "Clear", onAction: handleClearProducts }
                 ]}
             />
             <br/>
